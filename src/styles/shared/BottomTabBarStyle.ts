@@ -9,10 +9,10 @@ const BottomTabBarStyle = {
   label: {
     ...TextStyle.small_body_2_regular,
   },
-  activeTint: {
+  active_tint: {
     color: COLOURS.orange,
   },
-  inactiveTint: {
+  inactive_tint: {
     color: COLOURS.gray_2,
   },
   container: {

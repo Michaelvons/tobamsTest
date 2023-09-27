@@ -5,9 +5,6 @@ import TextStyle from '../shared/TextStyle';
 import InputStyle from '../shared/InputStyle';
 
 const SearchInputStyle = StyleSheet.create({
-  canvas: {
-    padding: 24,
-  },
   icon: {
     width: 14,
     height: 14,

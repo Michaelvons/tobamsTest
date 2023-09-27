@@ -1,8 +1,6 @@
 import {StyleSheet} from 'react-native';
 import MEASUREMENT from '../../const/measurement';
 import COLOURS from '../../enums/colour';
-// import COLOURS from '../../consts/colour';
-// import MEASUREMENT from '../../consts/measurement';
 
 const HorizontalRuleStyle = StyleSheet.create({
   line: {

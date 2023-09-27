@@ -25,8 +25,8 @@ const AccountStack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
 const TabBarOptions = {
-  tabBarInactiveTintColor: BottomTabBarStyle.inactiveTint.color,
-  tabBarActiveTintColor: BottomTabBarStyle.activeTint.color,
+  tabBarInactiveTintColor: BottomTabBarStyle.inactive_tint.color,
+  tabBarActiveTintColor: BottomTabBarStyle.active_tint.color,
   tabBarStyle: BottomTabBarStyle.container,
   tabBarLabelStyle: {
     ...BottomTabBarStyle.label,
