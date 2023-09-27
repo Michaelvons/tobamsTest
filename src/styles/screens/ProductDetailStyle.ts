@@ -13,6 +13,7 @@ const ProductDetailStyle = StyleSheet.create({
   },
   navigationSection: {
     padding: 24,
+    backgroundColor: COLOURS.bg_app,
   },
   imageContainer: {
     backgroundColor: COLOURS.white,
@@ -27,8 +28,6 @@ const ProductDetailStyle = StyleSheet.create({
   title: {
     ...TextStyle.small_body_1_medium,
     color: COLOURS.gray_1,
-    width: 300,
-    marginRight: 8,
   },
   price: {
     ...TextStyle.small_body_2_medium,

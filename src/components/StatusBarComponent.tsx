@@ -1,20 +1,15 @@
 import {useIsFocused} from '@react-navigation/native';
-import {StatusBar, useColorScheme} from 'react-native';
+import {StatusBar} from 'react-native';
 
 interface IStatusBarComponent {
   hexColorCode: string;
 }
 
 const StatusBarComponent = ({hexColorCode}: IStatusBarComponent) => {
-  const isDarkMode = useColorScheme() === 'dark';
-
   return (
     <>
       {useIsFocused() ? (
-        <StatusBar
-          barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-          backgroundColor={hexColorCode}
-        />
+        <StatusBar barStyle="dark-content" backgroundColor={hexColorCode} />
       ) : null}
     </>
   );

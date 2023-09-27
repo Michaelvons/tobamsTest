@@ -42,8 +42,7 @@ const ProductItemPotraitStyle = StyleSheet.create({
   title: {
     ...TextStyle.small_body_2_medium,
     color: COLOURS.gray_1,
-    width: 100,
-    marginRight: 8,
+    width: 80,
   },
   price: {
     ...TextStyle.small_body_2_medium,

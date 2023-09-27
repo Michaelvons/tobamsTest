@@ -21,7 +21,6 @@ const ProductStyle = StyleSheet.create({
     borderTopWidth: MEASUREMENT.border_width,
     borderBottomWidth: MEASUREMENT.border_width,
     borderColor: COLOURS.border,
-    paddingVertical: 24,
     padding: 24,
   },
 });

@@ -68,7 +68,7 @@ const CartScreen = ({navigation}: ICart) => {
             Total <Text style={CartStyle.quantity}>(3 Items)</Text>
           </Text>
 
-          <Text style={CartStyle.cost}>#90</Text>
+          <Text style={CartStyle.cost}>£90</Text>
         </View>
 
         <GapComponent height={12} width={0} />

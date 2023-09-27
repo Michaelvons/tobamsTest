@@ -5,7 +5,7 @@ import COLOURS from '../../enums/colour';
 const HomeStyle = StyleSheet.create({
   canvas: {
     backgroundColor: COLOURS.bg_app,
-    padding: 24,
+    padding: 18,
     height: MEASUREMENT.device_height,
   },
 });
