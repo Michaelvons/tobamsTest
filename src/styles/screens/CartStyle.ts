@@ -1,6 +1,6 @@
 import {StyleSheet} from 'react-native';
 import MEASUREMENT from '../../const/measurement';
-import COLOURS from '../../const/colours';
+import COLOURS from '../../enums/colour';
 import TextStyle from '../shared/TextStyle';
 
 const CartStyle = StyleSheet.create({
@@ -12,7 +12,6 @@ const CartStyle = StyleSheet.create({
     backgroundColor: COLOURS.bg_app,
     padding: 24,
     height: MEASUREMENT.device_height,
-    // justifyContent: 'space-between',
   },
   productsContainer: {
     padding: 24,
@@ -30,7 +29,6 @@ const CartStyle = StyleSheet.create({
   summary: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    // paddingHorizontal: 24,
   },
   label: {
     ...TextStyle.small_body_2_regular,

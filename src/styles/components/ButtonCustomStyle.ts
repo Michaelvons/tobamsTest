@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import COLOURS from '../../const/colours';
+import COLOURS from '../../enums/colour';
 import ButtonStyle from '../shared/ButtonStyle';
 import TextStyle from '../shared/TextStyle';
 

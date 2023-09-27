@@ -1,9 +1,9 @@
 import {ScrollView, Text, TouchableOpacity, View} from 'react-native';
 import StatusBarComponent from '../components/StatusBarComponent';
-import COLOURS from '../const/colours';
+import COLOURS from '../enums/colour';
 import NavigationHeaderComponent from '../components/NavigationHeaderComponent';
 import {NavigationProp} from '@react-navigation/native';
-import ProductDetailStyle from '../styles/components/ProductDetailStyle';
+import ProductDetailStyle from '../styles/screens/ProductDetailStyle';
 import Carousel from 'react-native-reanimated-carousel';
 import {Image} from 'react-native';
 import GapComponent from '../components/GapComponent';
@@ -14,42 +14,46 @@ import {ListItem} from '@rneui/themed';
 import {useState} from 'react';
 import QuantityPickerHorizontalComponent from '../components/QuanityPickerHorizontalComponent';
 import ButtonCustomComponent from '../components/ButtonCustomComponent';
+import SCREEN from '../enums/screen';
 
 interface IProductDetail {
   navigation: NavigationProp<any>;
 }
 
 const ProductDetailScreen = ({navigation}: IProductDetail) => {
+  const maxDescriptionLines = 4;
+
   const [ingredientExpanded, setIngredientExpanded] = useState(false);
   const [nutritionExpanded, setNutritionExpanded] = useState(false);
   const [preparationExpanded, setPreparationExpanded] = useState(false);
   const [dietaryExpanded, setDietaryExpanded] = useState(false);
   const [storageExpanded, setStorageExpanded] = useState(false);
   const [extraExpanded, setExtraExpanded] = useState(false);
+  const [descriptionLimit, setDescriptionLimit] = useState(maxDescriptionLines);
 
   const goToProductScreen = () => {
-    navigation.navigate('Product');
+    navigation.navigate(SCREEN.PRODUCT);
   };
 
-  const showMoreLess = () => {
-    console.log('showMoreLess');
+  const showMoreLess = (numberOfLines: number) => {
+    descriptionLimit === maxDescriptionLines
+      ? setDescriptionLimit(numberOfLines)
+      : setDescriptionLimit(maxDescriptionLines);
   };
 
   return (
     <>
       <StatusBarComponent hexColorCode={COLOURS.bg_app} />
-      <ScrollView contentContainerStyle={ProductDetailStyle.canvas}>
+      <View style={ProductDetailStyle.navigationSection}>
         <NavigationHeaderComponent
           showNavBack
           navBackAction={goToProductScreen}
         />
-
-        <GapComponent height={32} width={0} />
-
+      </View>
+      <ScrollView contentContainerStyle={ProductDetailStyle.canvas}>
         <Carousel
           width={MEASUREMENT.full_width()}
           height={304}
-          // autoPlay={true}
           data={[...new Array(6).keys()]}
           scrollAnimationDuration={1000}
           renderItem={({index}) => (
@@ -72,11 +76,11 @@ const ProductDetailScreen = ({navigation}: IProductDetail) => {
           <Text style={ProductDetailStyle.title}>
             African Donut Mix (Puff Puff)
           </Text>
-          <Text style={ProductDetailStyle.price}>#3.99</Text>
+          <Text style={ProductDetailStyle.price}>£3.99</Text>
         </View>
         <Text
           style={ProductDetailStyle.description}
-          numberOfLines={4}
+          numberOfLines={descriptionLimit}
           ellipsizeMode="tail">
           Rare Eat Puff Puff Mix can be made into a deep-fried dough. They are
           made from yeast dough, shaped into balls and deep-fried until golden
@@ -84,7 +88,7 @@ const ProductDetailScreen = ({navigation}: IProductDetail) => {
           doughnut-like texture but slightly o. It has a doughnut-like texture
           but slightly o. It has a doughnut-like texture but slightly o
         </Text>
-        <TouchableOpacity onPress={showMoreLess}>
+        <TouchableOpacity onPress={() => showMoreLess(10)}>
           <Text style={ProductDetailStyle.readMore}>Read More</Text>
         </TouchableOpacity>
 

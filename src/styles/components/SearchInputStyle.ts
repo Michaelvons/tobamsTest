@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import COLOURS from '../../const/colours';
+import COLOURS from '../../enums/colour';
 import MEASUREMENT from '../../const/measurement';
 import TextStyle from '../shared/TextStyle';
 import InputStyle from '../shared/InputStyle';

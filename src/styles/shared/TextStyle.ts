@@ -1,4 +1,4 @@
-import FONT from '../../const/font';
+import FONT from '../../enums/font';
 
 const TextStyle = {
   small_body_1_medium: {

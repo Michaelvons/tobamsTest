@@ -6,7 +6,6 @@ import {
   View,
 } from 'react-native';
 import ProductItemLandscapeStyle from '../styles/components/ProductItemLandscapeStyle';
-import ButtonCustomComponent from './ButtonCustomComponent';
 import QuantityPickerVerticalComponent from './QuantityPickerVerticalComponent';
 
 interface IProductItem {
@@ -31,7 +30,7 @@ const ProductItemLandscapeComponent = ({
 
         <View>
           <Text style={ProductItemLandscapeStyle.title}>{title}</Text>
-          <Text style={ProductItemLandscapeStyle.price}>#{price}</Text>
+          <Text style={ProductItemLandscapeStyle.price}>£{price}</Text>
           <TouchableOpacity>
             <Image
               source={require('../assets/icons/bin-icon.png')}

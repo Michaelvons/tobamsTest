@@ -1,6 +1,6 @@
 import {StyleSheet} from 'react-native';
 import MEASUREMENT from '../../const/measurement';
-import COLOURS from '../../const/colours';
+import COLOURS from '../../enums/colour';
 
 const ProductStyle = StyleSheet.create({
   navigationSection: {
@@ -9,6 +9,7 @@ const ProductStyle = StyleSheet.create({
   canvas: {
     backgroundColor: COLOURS.bg_app,
     height: MEASUREMENT.device_height,
+    paddingBottom: 48,
   },
   productsContainer: {
     padding: 24,

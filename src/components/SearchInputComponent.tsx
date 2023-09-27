@@ -1,5 +1,5 @@
-import {Image, TextInput, View} from 'react-native';
-import COLOURS from '../const/colours';
+import {Image, View} from 'react-native';
+import COLOURS from '../enums/colour';
 import SearchInputStyle from '../styles/components/SearchInputStyle';
 import {Input} from '@rneui/themed';
 

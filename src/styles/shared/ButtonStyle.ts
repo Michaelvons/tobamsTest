@@ -1,4 +1,4 @@
-import COLOURS from '../../const/colours';
+import COLOURS from '../../enums/colour';
 import MEASUREMENT from '../../const/measurement';
 
 const ButtonStyle = {

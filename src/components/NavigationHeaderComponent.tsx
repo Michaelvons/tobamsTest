@@ -1,4 +1,4 @@
-import {Button, Image, Text, TouchableOpacity, View} from 'react-native';
+import {Image, Text, TouchableOpacity, View} from 'react-native';
 import NavigationHeaderStyle from '../styles/components/NavigationHeaderStyle';
 
 interface INavigationHeader {

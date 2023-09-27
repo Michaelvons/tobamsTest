@@ -1,11 +1,13 @@
-import {ScrollView, Text, View} from 'react-native';
+import {ScrollView, View} from 'react-native';
 import NavigationHeaderComponent from '../components/NavigationHeaderComponent';
 import ProductStyle from '../styles/screens/ProductStyle';
 import SeachInputComponent from '../components/SearchInputComponent';
 import StatusBarComponent from '../components/StatusBarComponent';
-import COLOURS from '../const/colours';
+import COLOURS from '../enums/colour';
 import ProductItemPortraitComponent from '../components/ProductItemPortraitComponent';
 import {NavigationProp} from '@react-navigation/native';
+import SCREEN from '../enums/screen';
+import TAB from '../enums/tab';
 
 interface IProduct {
   navigation: NavigationProp<any>;
@@ -13,14 +15,45 @@ interface IProduct {
 
 const ProductScreen = ({navigation}: IProduct) => {
   const gotoProductDetail = () => {
-    console.log('ProductDetail');
-    navigation.navigate('ProductDetail');
+    navigation.navigate(SCREEN.PRODUCT_DETAIL);
   };
 
   const gotoCart = () => {
-    console.log('Cart');
-    navigation.navigate('CartTab');
+    navigation.navigate(TAB.CART_TAB);
   };
+
+  const Products = [
+    {
+      image_path: require('../assets/images/afri-donut-mix.png'),
+      title: 'African Donut Mix',
+      price: 30,
+    },
+    {
+      image_path: require('../assets/images/efo-riro.png'),
+      title: 'Efo Riro',
+      price: 30,
+    },
+    {
+      image_path: require('../assets/images/yam-porridge-asaro.png'),
+      title: 'Asaro (Yam Porridge)',
+      price: 30,
+    },
+    {
+      image_path: require('../assets/images/chicken-stew.png'),
+      title: 'Chicken Stew',
+      price: 30,
+    },
+    {
+      image_path: require('../assets/images/yam-porridge-asaro.png'),
+      title: 'Asaro (Yam Porridge)',
+      price: 30,
+    },
+    {
+      image_path: require('../assets/images/yam-porridge-asaro.png'),
+      title: 'Asaro (Yam Porridge)',
+      price: 30,
+    },
+  ];
 
   return (
     <>
@@ -35,48 +68,16 @@ const ProductScreen = ({navigation}: IProduct) => {
         </View>
 
         <ScrollView contentContainerStyle={ProductStyle.productsContainer}>
-          <ProductItemPortraitComponent
-            imagePath={require('../assets/images/afri-donut-mix.png')}
-            title="African Donut Mix"
-            price={30}
-            onPressAction={gotoProductDetail}
-            onAddToCartAction={gotoCart}
-          />
-          <ProductItemPortraitComponent
-            imagePath={require('../assets/images/efo-riro.png')}
-            title="Efo Riro"
-            price={30}
-            onPressAction={gotoProductDetail}
-            onAddToCartAction={gotoCart}
-          />
-          <ProductItemPortraitComponent
-            imagePath={require('../assets/images/yam-porraige-asaro.png')}
-            title="Asaro (Yam Porriage)"
-            price={30}
-            onPressAction={gotoProductDetail}
-            onAddToCartAction={gotoCart}
-          />
-          <ProductItemPortraitComponent
-            imagePath={require('../assets/images/chicken-stew.png')}
-            title="Chicken Stew"
-            price={30}
-            onPressAction={gotoProductDetail}
-            onAddToCartAction={gotoCart}
-          />
-          <ProductItemPortraitComponent
-            imagePath={require('../assets/images/yam-porraige-asaro.png')}
-            title="Asaro (Yam Porriage)"
-            price={30}
-            onPressAction={gotoProductDetail}
-            onAddToCartAction={gotoCart}
-          />
-          <ProductItemPortraitComponent
-            imagePath={require('../assets/images/yam-porraige-asaro.png')}
-            title="Asaro (Yam Porriage)"
-            price={30}
-            onPressAction={gotoProductDetail}
-            onAddToCartAction={gotoCart}
-          />
+          {Products.map((item, index) => (
+            <ProductItemPortraitComponent
+              key={index}
+              imagePath={item.image_path}
+              title={item.title}
+              price={item.price}
+              onPressAction={gotoProductDetail}
+              onAddToCartAction={gotoCart}
+            />
+          ))}
         </ScrollView>
       </View>
     </>

@@ -52,7 +52,7 @@ const ProductItemPortraitComponent = ({
           style={ProductItemPotraitStyle.title}>
           {title}
         </Text>
-        <Text style={ProductItemPotraitStyle.price}>#{price}</Text>
+        <Text style={ProductItemPotraitStyle.price}>£{price}</Text>
       </View>
 
       <ButtonCustomComponent

@@ -1,26 +1,8 @@
 import 'react-native-gesture-handler';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import React from 'react';
-import type {PropsWithChildren} from 'react';
-import {
-  Image,
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
-// import {createStackNavigator} from "@react-navigation/native"
-
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+import {Image, StatusBar, useColorScheme} from 'react-native';
+import {Colors} from 'react-native/Libraries/NewAppScreen';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import HomeScreen from './src/screens/HomeScreen';
@@ -30,52 +12,33 @@ import CartScreen from './src/screens/CartScreen';
 import AccountScreen from './src/screens/AccountScreen';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {NavigationContainer} from '@react-navigation/native';
-
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
-
-// function Section({children, title}: SectionProps): JSX.Element {
-//   const isDarkMode = useColorScheme() === 'dark';
-//   return (
-//     <View style={styles.sectionContainer}>
-//       <Text
-//         style={[
-//           styles.sectionTitle,
-//           {
-//             color: isDarkMode ? Colors.white : Colors.black,
-//           },
-//         ]}>
-//         {title}
-//       </Text>
-//       <Text
-//         style={[
-//           styles.sectionDescription,
-//           {
-//             color: isDarkMode ? Colors.light : Colors.dark,
-//           },
-//         ]}>
-//         {children}
-//       </Text>
-//     </View>
-//   );
-// }
+import BottomTabBarStyle from './src/styles/shared/BottomTabBarStyle';
+import SCREEN from './src/enums/screen';
+import TAB from './src/enums/tab';
 
 const Stack = createStackNavigator();
 const HomeStack = createStackNavigator();
 const MenuStack = createStackNavigator();
-const ProductStack = createStackNavigator();
 const CartStack = createStackNavigator();
 const AccountStack = createStackNavigator();
 
 const Tab = createBottomTabNavigator();
 
+const TabBarOptions = {
+  tabBarInactiveTintColor: BottomTabBarStyle.inactiveTint.color,
+  tabBarActiveTintColor: BottomTabBarStyle.activeTint.color,
+  tabBarStyle: BottomTabBarStyle.container,
+  tabBarLabelStyle: {
+    ...BottomTabBarStyle.label,
+  },
+};
+
 const HomeStackScreens = () => {
   return (
     <HomeStack.Navigator
-      initialRouteName="Home"
+      initialRouteName={SCREEN.HOME}
       screenOptions={{headerShown: false}}>
-      <HomeStack.Screen name="Home" component={HomeScreen} />
+      <HomeStack.Screen name={SCREEN.HOME} component={HomeScreen} />
     </HomeStack.Navigator>
   );
 };
@@ -83,32 +46,19 @@ const HomeStackScreens = () => {
 const MenuStackScreens = () => {
   return (
     <MenuStack.Navigator
-      initialRouteName="Product"
+      initialRouteName={SCREEN.PRODUCT}
       screenOptions={{headerShown: false}}>
-      <MenuStack.Screen name="Product" component={ProductScreen} />
+      <MenuStack.Screen name={SCREEN.PRODUCT} component={ProductScreen} />
     </MenuStack.Navigator>
-  );
-};
-
-const ProductStackScreens = () => {
-  return (
-    <ProductStack.Navigator
-      initialRouteName="ProductDetail"
-      screenOptions={{headerShown: false}}>
-      <ProductStack.Screen
-        name="ProductDetail"
-        component={ProductDetailScreen}
-      />
-    </ProductStack.Navigator>
   );
 };
 
 const CartStackScreens = () => {
   return (
     <CartStack.Navigator
-      initialRouteName="ProductDetail"
+      initialRouteName={SCREEN.CART}
       screenOptions={{headerShown: false}}>
-      <CartStack.Screen name="ProductDetail" component={CartScreen} />
+      <CartStack.Screen name={SCREEN.CART} component={CartScreen} />
     </CartStack.Navigator>
   );
 };
@@ -116,9 +66,9 @@ const CartStackScreens = () => {
 const AccountStackScreens = () => {
   return (
     <AccountStack.Navigator
-      initialRouteName="Account"
+      initialRouteName={SCREEN.ACCOUNT}
       screenOptions={{headerShown: false}}>
-      <AccountStack.Screen name="Account" component={AccountScreen} />
+      <AccountStack.Screen name={SCREEN.ACCOUNT} component={AccountScreen} />
     </AccountStack.Navigator>
   );
 };
@@ -129,87 +79,84 @@ const AppTabScreen = () => {
       screenOptions={{headerShown: false, tabBarHideOnKeyboard: true}}
       backBehavior="none">
       <Tab.Screen
-        name="HomeTab"
+        name={TAB.HOME_TAB}
         component={HomeStackScreens}
         options={{
-          tabBarLabel: ({}) => null,
+          ...TabBarOptions,
+          tabBarLabel: SCREEN.HOME,
           tabBarIcon: ({focused}) =>
             focused ? (
               <Image
-                source={require('./src/assets/icons/home-grey.png')}
-                style={{width: 24, height: 24}}
+                source={require('./src/assets/icons/home-theme.png')}
+                style={BottomTabBarStyle.icon}
                 resizeMode="contain"
               />
             ) : (
               <Image
                 source={require('./src/assets/icons/home-grey.png')}
-                style={{width: 24, height: 24}}
+                style={BottomTabBarStyle.icon}
                 resizeMode="contain"
               />
             ),
         }}
       />
       <Tab.Screen
-        name="MenuTab"
+        name={TAB.MENU_TAB}
         component={MenuStackScreens}
         options={{
-          tabBarLabel: ({}) => null,
+          ...TabBarOptions,
+          tabBarLabel: SCREEN.MENU,
           tabBarIcon: ({focused}) =>
             focused ? (
               <Image
-                source={require('./src/assets/icons/home-grey.png')}
-                style={{width: 22, height: 22}}
+                source={require('./src/assets/icons/menu-theme.png')}
+                style={BottomTabBarStyle.icon}
                 resizeMode="contain"
               />
             ) : (
               <Image
-                source={require('./src/assets/icons/home-grey.png')}
-                style={{width: 22, height: 22}}
+                source={require('./src/assets/icons/menu-grey.png')}
+                style={BottomTabBarStyle.icon}
                 resizeMode="contain"
               />
             ),
         }}
       />
       <Tab.Screen
-        name="CartTab"
+        name={TAB.CART_TAB}
         component={CartStackScreens}
         options={{
-          tabBarLabel: ({}) => null,
+          ...TabBarOptions,
+          tabBarLabel: SCREEN.CART,
           tabBarIcon: ({focused}) =>
             focused ? (
               <Image
-                source={require('./src/assets/icons/home-grey.png')}
-                style={{width: 24, height: 24}}
+                source={require('./src/assets/icons/cart-theme.png')}
+                style={BottomTabBarStyle.icon}
                 resizeMode="contain"
               />
             ) : (
               <Image
-                source={require('./src/assets/icons/home-grey.png')}
-                style={{width: 24, height: 24}}
+                source={require('./src/assets/icons/cart-grey.png')}
+                style={BottomTabBarStyle.icon}
                 resizeMode="contain"
               />
             ),
         }}
       />
       <Tab.Screen
-        name="Account"
+        name={TAB.ACCOUNT_TAB}
         component={AccountStackScreens}
         options={{
-          tabBarLabel: ({}) => null,
-          tabBarIcon: ({focused}) =>
-            focused ? (
-              <Image
-                source={require('./src/assets/icons/home-grey.png')}
-                style={{width: 24, height: 24}}
-                resizeMode="contain"
-              />
-            ) : (
-              <Image
-                source={require('./src/assets/icons/home-grey.png')}
-                style={{width: 24, height: 24}}
-                resizeMode="contain"
-              />
-            ),
+          ...TabBarOptions,
+          tabBarLabel: SCREEN.ACCOUNT,
+          tabBarIcon: ({}) => (
+            <Image
+              source={require('./src/assets/images/account-avatar.png')}
+              style={BottomTabBarStyle.icon}
+              resizeMode="contain"
+            />
+          ),
         }}
       />
     </Tab.Navigator>
@@ -224,44 +171,12 @@ const App = () => {
   };
 
   return (
-    // <SafeAreaView style={backgroundStyle}>
-    //   <StatusBar
-    //     barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-    //     backgroundColor={backgroundStyle.backgroundColor}
-    //   />
-    //   <ScrollView
-    //     contentInsetAdjustmentBehavior="automatic"
-    //     style={backgroundStyle}>
-    //     <Header />
-    //     <View
-    //       style={{
-    //         backgroundColor: isDarkMode ? Colors.black : Colors.white,
-    //       }}>
-    //       <Section title="Step One">
-    //         Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-    //         screen and then come back to see your edits.
-    //       </Section>
-    //       <Section title="See Your Changes">
-    //         <ReloadInstructions />
-    //       </Section>
-    //       <Section title="Debug">
-    //         <DebugInstructions />
-    //       </Section>
-    //       <Section title="Learn More">
-    //         Read the docs to discover what to do next:
-    //       </Section>
-    //       <LearnMoreLinks />
-    //     </View>
-    //   </ScrollView>
-    // </SafeAreaView>
-
     <GestureHandlerRootView style={{flex: 1}}>
       <SafeAreaProvider>
         <StatusBar
           barStyle={isDarkMode ? 'light-content' : 'dark-content'}
           backgroundColor={backgroundStyle.backgroundColor}
         />
-
         <NavigationContainer>
           <Stack.Navigator
             initialRouteName="App"
@@ -277,24 +192,5 @@ const App = () => {
     </GestureHandlerRootView>
   );
 };
-
-// const styles = StyleSheet.create({
-//   sectionContainer: {
-//     marginTop: 32,
-//     paddingHorizontal: 24,
-//   },
-//   sectionTitle: {
-//     fontSize: 24,
-//     fontWeight: '600',
-//   },
-//   sectionDescription: {
-//     marginTop: 8,
-//     fontSize: 18,
-//     fontWeight: '400',
-//   },
-//   highlight: {
-//     fontWeight: '700',
-//   },
-// });
 
 export default App;
